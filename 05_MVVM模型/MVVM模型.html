@@ -4,44 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>el与data的两种写法</title>
+    <title>理解MVVM</title>
     <!-- 引入vue -->
     <script type = "text/javascript" src="../js/vue.js"></script>
 
   </head>
   <body>
    
-   
+   <!-- 
+			MVVM模型
+						1. M：模型(Model) ：data中的数据
+						2. V：视图(View) ：模板代码(div里的)
+						3. VM：视图模型(ViewModel)：Vue实例
+			观察发现：
+						1.data中所有的属性，最后都出现在了vm身上。
+						2.vm身上所有的属性 及 Vue原型上所有属性，在Vue模板中都可以直接使用。
+		-->
     <!-- 准备好一个容器 -->
-    <div id = "root">你好,{{name}}
+    <div id = "root">
+      <h1>学校名称：{{name}}</h1>
+      <h1>学校地址：{{address}}</h1>
     </div>
 
     <script type = "text/javascript">
       Vue.config.productionTip =false;//阻止 vue 在启动时生成生产提示
-      // el的两种写法
-    //   const v = new Vue({
-    //     //el:"#root",//第一种写法
-    //     data:{
-    //       name:"尚硅谷 "
-    //     }
-    //   })
-    // console.log(v);
-    // v.$mount("#root")//第二种写法
-
-    //data的两种写法
-    new Vue({
-      el:"#root",
-      //data的第一种写法：对象式
-      /* data:{
-        name:"上学堂"
-      } */
-      //data的第二种写法：函数式
-      data:function(){
-        return {
-          name:"尚硅谷"
+     
+     const vm = new Vue({
+        el:"#root",//第一种写法
+        data:{
+          name:"尚硅谷 ",
+          address:"北京"
         }
-      }
-    })
+      })
+      console.log(vm);
+
+    
       
     </script>
   </body>
